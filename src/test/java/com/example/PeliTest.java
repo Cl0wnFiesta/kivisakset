@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mockito;
 
 import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -85,10 +86,11 @@ public class PeliTest {
     @Order(5)
     @Test
     public void testPeliLoppui() {
-        while (!game.onkoKäynnissä()) {
+        assertFalse(game.onkoPeliOhi());
+        while (!game.onkoPeliOhi()) {
             game.pelaa();
         }
-        assertTrue(game.onkoKäynnissä());
+        assertTrue(game.onkoPeliOhi());
     }
 
 }
