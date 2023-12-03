@@ -1,0 +1,235 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > Peli</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example</a>
+</div>
+
+<h1>Coverage Summary for Class: Peli (com.example)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Peli</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (34/34)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example;
+&nbsp;
+&nbsp;/**
+&nbsp; * Luokka `Peli` kuvaa peliä kahden pelaajan (`Pelaaja`-instanssien) välillä.
+&nbsp; * Se hallinnoi pelin kulkua, seuraa pelattujen pelien, tasapelien ja voittajan
+&nbsp; * määrää.
+&nbsp; *
+&nbsp; * Peli jatkuu, kunnes toinen pelaajista saavuttaa kolme voittoa.
+&nbsp; *
+&nbsp; * @author Ira Dook
+&nbsp; * @author Jonne Borgman
+&nbsp; * @see Main
+&nbsp; * @see Pelaaja
+&nbsp; */
+&nbsp;public class Peli {
+&nbsp;
+<b class="fc">&nbsp;    private Pelaaja p1 = new Pelaaja();</b>
+<b class="fc">&nbsp;    private Pelaaja p2 = new Pelaaja();</b>
+&nbsp;    private int pelatutPelit; // Pelattujen pelien määrä
+&nbsp;    private int tasapelit; // Tasapelien määrä
+<b class="fc">&nbsp;    private boolean peliLoppui = false; // Kertoo, onko peli päättynyt</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Luo uuden pelin annetuilla pelaajilla.
+&nbsp;     *
+&nbsp;     * @param p1 Pelaaja 1
+&nbsp;     * @param p2 Pelaaja 2
+&nbsp;     */
+<b class="fc">&nbsp;    public Peli(Pelaaja p1, Pelaaja p2) {</b>
+<b class="fc">&nbsp;        this.p1 = p1;</b>
+<b class="fc">&nbsp;        this.p2 = p2;</b>
+<b class="fc">&nbsp;        this.pelatutPelit = 0;</b>
+<b class="fc">&nbsp;        this.tasapelit = 0;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Pelaa yhden kierroksen peliä, määrittää kunkin pelaajan valinnan,
+&nbsp;     * arvioi voittajan ja päivittää pelin tilastoja.
+&nbsp;     */
+&nbsp;    public void pelaa() {
+&nbsp;
+<b class="fc">&nbsp;        System.out.println(&quot;Erä: &quot;</b>
+&nbsp;                + (pelatutPelit += 1) + &quot; =====================\n&quot;);
+&nbsp;
+<b class="fc">&nbsp;        String pelaaja1Valinta = p1.pelaajanValinta();</b>
+<b class="fc">&nbsp;        String pelaaja2Valinta = p2.pelaajanValinta();</b>
+&nbsp;
+<b class="fc">&nbsp;        kumpiVoitti(p1, p2, pelaaja1Valinta, pelaaja2Valinta);</b>
+&nbsp;
+<b class="fc">&nbsp;        System.out.println(&quot;Tasapelien määrä: &quot;</b>
+&nbsp;                + tasapelit + &quot;\n&quot;);
+&nbsp;
+<b class="fc">&nbsp;        System.out.println(&quot;Pelaaja 1: &quot; + pelaaja1Valinta</b>
+<b class="fc">&nbsp;                + &quot;\n\t Pelaaja 1:llä koossa &quot; + p1.getVoitot() + &quot; voittoa.&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;        System.out.println(&quot;Pelaaja 2: &quot; + pelaaja2Valinta</b>
+<b class="fc">&nbsp;                + &quot;\n\t Pelaaja 2:llä koossa &quot; + p2.getVoitot() + &quot; voittoa.&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;        System.out.println();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Määrittää kierroksen voittajan pelaajien valintojen perusteella.
+&nbsp;     *
+&nbsp;     * @param p1        Pelaaja 1
+&nbsp;     * @param p2        Pelaaja 2
+&nbsp;     * @param p1Valinta Pelaaja 1:n valinta
+&nbsp;     * @param p2Valinta Pelaaja 2:n valinta
+&nbsp;     */
+&nbsp;    public void kumpiVoitti(Pelaaja p1, Pelaaja p2, String p1Valinta, String p2Valinta) {
+<b class="fc">&nbsp;        if (p1Valinta.equals(p2Valinta)) {</b>
+<b class="fc">&nbsp;            tasapelit++;</b>
+<b class="fc">&nbsp;            System.out.println(&quot;\t Tasapeli \n&quot;);</b>
+<b class="fc">&nbsp;        } else if (p1.onkoVoittaja(p1Valinta, p2Valinta) == true) {</b>
+<b class="fc">&nbsp;            p1.setVoitot();</b>
+<b class="fc">&nbsp;            System.out.println(&quot;\t Pelaaja 1 voittaa \n&quot;);</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            p2.setVoitot();</b>
+<b class="fc">&nbsp;            System.out.println(&quot;\t Pelaaja 2 voittaa \n&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Palauttaa tasapelien määrän.
+&nbsp;     *
+&nbsp;     * @return Tasapelien määrä
+&nbsp;     */
+&nbsp;    public int getTasapelit() {
+<b class="fc">&nbsp;        return tasapelit;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Palauttaa pelattujen pelien määrän.
+&nbsp;     *
+&nbsp;     * @return Pelattujen pelien määrä
+&nbsp;     */
+&nbsp;    public int getPelatutPelit() {
+<b class="fc">&nbsp;        return pelatutPelit;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Palauttaa Pelaajan 1.
+&nbsp;     *
+&nbsp;     * @return Pelaaja 1
+&nbsp;     */
+&nbsp;    public Pelaaja getP1() {
+<b class="fc">&nbsp;        return p1;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Palauttaa Pelaajan 2.
+&nbsp;     *
+&nbsp;     * @return Pelaaja 2
+&nbsp;     */
+&nbsp;    public Pelaaja getP2() {
+<b class="fc">&nbsp;        return p2;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Tarkistaa, onko peli päättynyt.
+&nbsp;     *
+&nbsp;     * @return True, jos peli on päättynyt, muuten false
+&nbsp;     */
+&nbsp;    public boolean onkoPeliOhi() {
+<b class="fc">&nbsp;        if (p1.getVoitot() == 3 || p2.getVoitot() == 3) {</b>
+<b class="fc">&nbsp;            System.out.println(&quot;KOLME VOITTOA! Peli loppui. Voittaja: &quot; + (p1.getVoitot() == 3 ? &quot;Pelaaja 1&quot; : &quot;Pelaaja 2&quot;));</b>
+<b class="fc">&nbsp;            return true;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-03 11:57</div>
+</div>
+</body>
+</html>

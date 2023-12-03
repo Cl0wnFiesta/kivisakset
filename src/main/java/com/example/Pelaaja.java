@@ -1,9 +1,11 @@
 package com.example;
 
+import java.util.Random;
+
 /**
  * Luokka `Pelaaja` kuvaa yhtä pelaajaa kivipaperisakset-pelissä.
- * Pelaajalla on voittojen laskuri, valintamahdollisuudet ja tarvittavat
- * toiminnot pelissä menestymiseksi.
+ * Pelaajalla on voittojen laskuri, valintamahdollisuudet ja tarkistus
+ * voittiko hän kierroksen.
  *
  * @author Ira Dook
  * @author Jonne Borgman
@@ -20,8 +22,17 @@ public class Pelaaja {
      * @return Pelaajan valinta
      */
     public String pelaajanValinta() {
-        int valinta = (int) (Math.random() * 3);
+        int valinta = getRandomIndex();
         return valinnat[valinta];
+    }
+
+    /**
+     * Palauttaa satunnaisen indeksin valintojen taulukosta.
+     *
+     * @return Satunnainen indeksi
+     */
+    public int getRandomIndex() {
+        return new Random().nextInt(valinnat.length);
     }
 
     /**
@@ -52,4 +63,9 @@ public class Pelaaja {
     public int getVoitot() {
         return voitotYhteensä;
     }
+
+    public String[] getValinnat() {
+        return valinnat;
+    }
+
 }

@@ -1,0 +1,175 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > Pelaaja</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example</a>
+</div>
+
+<h1>Coverage Summary for Class: Pelaaja (com.example)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Pelaaja</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/12)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example;
+&nbsp;
+&nbsp;import java.util.Random;
+&nbsp;
+&nbsp;/**
+&nbsp; * Luokka `Pelaaja` kuvaa yhtä pelaajaa kivipaperisakset-pelissä.
+&nbsp; * Pelaajalla on voittojen laskuri, valintamahdollisuudet ja tarkistus
+&nbsp; * voittiko hän kierroksen.
+&nbsp; *
+&nbsp; * @author Ira Dook
+&nbsp; * @author Jonne Borgman
+&nbsp; */
+<b class="fc">&nbsp;public class Pelaaja {</b>
+&nbsp;
+<b class="fc">&nbsp;    private int voitotYhteensä = 0;</b>
+<b class="fc">&nbsp;    private String[] valinnat = { &quot;kivi&quot;, &quot;paperi&quot;, &quot;sakset&quot; };</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Arpoo ja palauttaa pelaajan satunnaisen valinnan kivestä, paperista tai
+&nbsp;     * saksista.
+&nbsp;     *
+&nbsp;     * @return Pelaajan valinta
+&nbsp;     */
+&nbsp;    public String pelaajanValinta() {
+<b class="fc">&nbsp;        int valinta = getRandomIndex();</b>
+<b class="fc">&nbsp;        return valinnat[valinta];</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Palauttaa satunnaisen indeksin valintojen taulukosta.
+&nbsp;     *
+&nbsp;     * @return Satunnainen indeksi
+&nbsp;     */
+&nbsp;    public int getRandomIndex() {
+<b class="fc">&nbsp;        return new Random().nextInt(valinnat.length);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Tarkistaa, voittaako pelaaja annetun vastapelaajan valinnan.
+&nbsp;     *
+&nbsp;     * @param p1Valinta Pelaajan oma valinta
+&nbsp;     * @param p2Valinta Vastapelaajan valinta
+&nbsp;     * @return True, jos pelaaja voittaa, muuten false
+&nbsp;     */
+&nbsp;    public boolean onkoVoittaja(String p1Valinta, String p2Valinta) {
+<b class="fc">&nbsp;        return (p1Valinta.equals(&quot;kivi&quot;) &amp;&amp; p2Valinta.equals(&quot;sakset&quot;)) ||</b>
+<b class="fc">&nbsp;                (p1Valinta.equals(&quot;paperi&quot;) &amp;&amp; p2Valinta.equals(&quot;kivi&quot;)) ||</b>
+<b class="fc">&nbsp;                (p1Valinta.equals(&quot;sakset&quot;) &amp;&amp; p2Valinta.equals(&quot;paperi&quot;));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Lisää yhden voiton pelaajan voittojen lukumäärään.
+&nbsp;     */
+&nbsp;    public void setVoitot() {
+<b class="fc">&nbsp;        voitotYhteensä += 1;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Palauttaa pelaajan voittojen kokonaismäärän.
+&nbsp;     *
+&nbsp;     * @return Voittojen kokonaismäärä
+&nbsp;     */
+&nbsp;    public int getVoitot() {
+<b class="fc">&nbsp;        return voitotYhteensä;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String[] getValinnat() {
+<b class="fc">&nbsp;        return valinnat;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-03 12:41</div>
+</div>
+</body>
+</html>

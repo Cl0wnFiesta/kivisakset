@@ -71,7 +71,7 @@ public class Peli {
         if (p1Valinta.equals(p2Valinta)) {
             tasapelit++;
             System.out.println("\t Tasapeli \n");
-        } else if (p1.onkoVoittaja(p1Valinta, p2Valinta) == true) {
+        } else if (p1.onkoVoittaja(p1Valinta, p2Valinta)) {
             p1.setVoitot();
             System.out.println("\t Pelaaja 1 voittaa \n");
         } else {
@@ -127,14 +127,5 @@ public class Peli {
             return true;
         }
         return false;
-    }
-
-    /**
-     * Tarkistaa, onko peli käynnissä.
-     *
-     * @return True, jos peli on vielä käynnissä, muuten false
-     */
-    public boolean onkoKäynnissä() {
-        return peliLoppui;
     }
 }
